@@ -1,2 +1,4 @@
 # samples
-Documentation and Samples
+Samples
+
+This repo contains sample files exported from DRA 2020.
