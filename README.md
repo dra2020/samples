@@ -1,2 +1,2 @@
-# docs
+# samples
 Documentation and Samples
