@@ -8,6 +8,9 @@
 # map_blocks.py ~/Downloads/district-shapes.geojson ~/Downloads/tl_2020_04_tabblock20.zip
 # map_blocks.py ~/dev/dra-data/district-shapes.geojson ~/dev/dra-data/tl_2020_04_tabblock20.zip
 #
+# map_blocks.py district-shapes.json tl_2020_04_tabblock20.zip
+# map_blocks.py district-shapes.geojson tl_2020_04_tabblock20.shp
+#
 # For documentation, type:
 #
 # map_blocks.py -h
@@ -36,6 +39,18 @@ def main():
     blocks_path = os.path.abspath(args.blocks_path)
 
     verbose = args.verbose
+
+    # Validate args
+    container_fn, container_ext = os.path.splitext(container_path)
+    blocks_fn, blocks_ext = os.path.splitext(blocks_path)
+
+    if (container_ext != '.geojson'):
+        print("Container file must be a .geojson")
+        sys.exit(0)
+
+    if (blocks_ext != '.zip'):
+        print("Blocks file must be a .zip")
+        sys.exit(0)
 
     print("Mapping blocks ...")
     print("Shapes: ", container_path)
