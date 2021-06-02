@@ -4,7 +4,9 @@
 #
 # TODO - For example:
 #
-# map_blocks ...
+# map_blocks.py district-shapes.geojson tl_2020_04_tabblock20.zip
+# map_blocks.py ~/Downloads/district-shapes.geojson ~/Downloads/tl_2020_04_tabblock20.zip
+# map_blocks.py ~/dev/dra-data/district-shapes.geojson ~/dev/dra-data/tl_2020_04_tabblock20.zip
 #
 # For documentation, type:
 #
@@ -23,20 +25,21 @@ import argparse
 
 
 def main():
-    # parser = argparse.ArgumentParser(description='Analyze a plan')
-    # parser.add_argument('vpi_csv', help='VPI by CD .csv')
-    # parser.add_argument('parms_txt', help='Parameters')
-    # parser.add_argument('-v', '--verbose', dest='verbose',
-    #                     action='store_true', help='verbose mode')
+    parser = argparse.ArgumentParser(description='Make a block-assignment file')
+    parser.add_argument('container_path', help='Path to .geojson for shapes being mapped, e.g., districts')
+    parser.add_argument('blocks_path', help='Path to .zip for block shapes being mapped to, e.g., 2020')
+    parser.add_argument('-v', '--verbose', dest='verbose', action='store_true', help='verbose mode')
 
-    # args = parser.parse_args()
+    args = parser.parse_args()
 
-    # vpi_csv = os.path.abspath(args.vpi_csv)
-    # parms_txt = os.path.abspath(args.parms_txt)
+    container_path = os.path.abspath(args.container_path)
+    blocks_path = os.path.abspath(args.blocks_path)
 
-    # verbose = args.verbose
+    verbose = args.verbose
 
-    print("TODO - Map blocks ...")
+    print("Mapping blocks ...")
+    print("Shapes: ", container_path)
+    print("Blocks: ", blocks_path)
 
 # END
 
