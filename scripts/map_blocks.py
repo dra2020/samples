@@ -6,7 +6,11 @@
 For example:
 
 ./map_blocks.py district-shapes.geojson tl_2020_04_tabblock20.zip
+
 ./map_blocks.py ~/dev/temp/AZ/district-shapes.geojson ~/dev/temp/AZ/tl_2020_04_tabblock20.zip
+./map_blocks.py ~/dev/temp/CA/district-shapes.geojson ~/dev/temp/CA/tl_2020_06_tabblock20.zip
+./map_blocks.py ~/dev/temp/TX/district-shapes.geojson ~/dev/temp/TX/tl_2020_48_tabblock20.zip
+
 ./map_blocks.py ~/dev/temp/AZ/district-shapes.geojson ~/dev/temp/AZ/tl_2020_04_tabblock20.zip -v
 ./map_blocks.py ~/dev/temp/AZ/district-shapes.geojson ~/dev/temp/AZ/tl_2020_04_tabblock20.zip -b GEOID10 -s foo -v
 
