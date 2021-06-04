@@ -5,21 +5,21 @@
 '''
 For example:
 
-map_blocks.py district-shapes.geojson tl_2020_04_tabblock20.zip
-map_blocks.py ~/dev/temp/district-shapes.geojson ~/dev/temp/tl_2020_04_tabblock20.zip
-map_blocks.py ~/dev/temp/district-shapes.geojson ~/dev/temp/tl_2020_04_tabblock20.zip -v
-map_blocks.py ~/dev/temp/district-shapes.geojson ~/dev/temp/tl_2020_04_tabblock20.zip -b GEOID10 -s foo -v
+./map_blocks.py district-shapes.geojson tl_2020_04_tabblock20.zip
+./map_blocks.py ~/dev/temp/AZ/district-shapes.geojson ~/dev/temp/AZ/tl_2020_04_tabblock20.zip
+./map_blocks.py ~/dev/temp/AZ/district-shapes.geojson ~/dev/temp/AZ/tl_2020_04_tabblock20.zip -v
+./map_blocks.py ~/dev/temp/AZ/district-shapes.geojson ~/dev/temp/AZ/tl_2020_04_tabblock20.zip -b GEOID10 -s foo -v
 
 Bad inputs cases:
 
-map_blocks.py district-shapes.json tl_2020_04_tabblock20.zip
-map_blocks.py district-shapes.geojson tl_2020_04_tabblock20.shp
-map_blocks.py ~/dev/temp/doesnt-exist.geojson ~/dev/temp/tl_2020_04_tabblock20.zip
-map_blocks.py ~/dev/temp/district-shapes.geojson ~/dev/temp/doesnt-exist.zip
+./map_blocks.py district-shapes.json tl_2020_04_tabblock20.zip
+./map_blocks.py district-shapes.geojson tl_2020_04_tabblock20.shp
+./map_blocks.py ~/dev/temp/doesnt-exist.geojson ~/dev/temp/tl_2020_04_tabblock20.zip
+./map_blocks.py ~/dev/temp/district-shapes.geojson ~/dev/temp/doesnt-exist.zip
 
 For documentation, type:
 
-map_blocks.py -h
+./map_blocks.py -h
 
 '''
 
@@ -85,7 +85,9 @@ def main():
 
     baf_path = shapes_fn + '.csv'
 
-    state = 'XX'  # TODO
+    state = 'XX'
+    if '_12_' in blocks_path:
+        state = 'FL'
 
     # Placeholders -- not used
     year = 2020
@@ -109,6 +111,7 @@ def main():
 # - Consolidated into one file (here)
 # - Replaced log.dprint() with print()
 # - Removed stateCode from make_block_map()
+# - Turned off "Very small in: source: " logging
 
 # Special work for Florida
 flcounty_map = {
@@ -184,7 +187,7 @@ def make_target_source_allmap(source, target, source_key, target_key, use_index_
                     if pct_in > 0.001:
                         contains_map[target_loc_key].append((source_row_key, pct_in, source_prec))
                     elif pct_in > 0:
-                        print("Very small in: source: ", source_row_key, ", target: ", target_loc_key)
+                        # print("Very small in: source: ", source_row_key, ", target: ", target_loc_key)
                         contains_map[target_loc_key].append((source_row_key, pct_in, source_prec))
                     else:
                         contains_map[target_loc_key].append((source_row_key, -1, source_prec))
