@@ -21,11 +21,14 @@ For documentation, type:
 
 ./map_blocks.py -h
 
+Setup instructions on Medium @ https://medium.com/dra-2020/making-a-block-assignment-file-a7fb7a68b9a
+
 '''
 
 import sys
 import os
 import argparse
+import csv
 
 # import pandas as pd
 import geopandas as gpd
@@ -106,12 +109,31 @@ def main():
     # Map the blocks to the shapes
     make_block_map(state, shapes_path, shapes_key, blocks_path, blocks_key, baf_path, year, isDemographicData, use_index_for_large_key, sourceIsBlkGrp)
 
+# Utility to generate a block assignment file
+def write_baf(block_dict, csv_file):
+    cf = os.path.expanduser(csv_file)
+    header = ['GEOID', 'DISTRICT']
+
+    try:
+        with open(cf, 'w') as handle:
+            csv_out = csv.writer(handle)
+            csv_out.writerow(header)
+
+            for geoid, grouping in block_dict.items():
+                csv_out.writerow(geoid, grouping)
+
+        return True
+    except:
+        print("Error write block assignment file: Directory does not exist.")
+        return False
+
 
 # The block mapping code cloned from disagg_agg:
 # - Consolidated into one file (here)
 # - Replaced log.dprint() with print()
 # - Removed stateCode from make_block_map()
 # - Turned off "Very small in: source: " logging
+# - Changed the output format to a CSV vs. JSON
 
 # Special work for Florida
 flcounty_map = {
@@ -336,8 +358,9 @@ def make_block_map(state, large_geo_path, large_geo_key, block_geo_path, block_k
     block_map = make_target_source_map(large_geo_path, block_geo_path, large_geo_key, block_key, use_index_for_large_key, state, year, isDemographicData, sourceIsBlkGrp)
 
     print('Writing block map\n')
-    with open(block2geo_path, 'w') as outf:
-        json.dump(block_map, outf, ensure_ascii=False)
+    write_baf(block_map, block2geo_path)
+    # with open(block2geo_path, 'w') as outf:
+    #     json.dump(block_map, outf, ensure_ascii=False)
 
 
 # Execute the script
