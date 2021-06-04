@@ -124,11 +124,11 @@ def write_baf(block_dict, csv_file):
             csv_out.writerow(header)
 
             for geoid, grouping in block_dict.items():
-                csv_out.writerow(geoid, grouping)
+                csv_out.writerow([geoid, grouping])
 
         return True
     except:
-        print("Error write block assignment file: Directory does not exist.")
+        print("Error writing block assignment file.")
         return False
 
 
