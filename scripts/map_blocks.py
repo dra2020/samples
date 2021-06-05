@@ -88,7 +88,7 @@ def main():
         blocks_key = args.blocks_key
     
     shapes_key = 'id'
-    if args.blocks_key:
+    if args.shapes_key:
         shapes_key = args.shapes_key
 
     baf_path = shapes_fn + '-BAF.csv'
