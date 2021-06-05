@@ -10,6 +10,7 @@ For example:
 ./map_blocks.py ~/dev/temp/AZ/district-shapes.geojson ~/dev/temp/AZ/tl_2020_04_tabblock20.zip
 ./map_blocks.py ~/dev/temp/CA/district-shapes.geojson ~/dev/temp/CA/tl_2020_06_tabblock20.zip
 ./map_blocks.py ~/dev/temp/TX/district-shapes.geojson ~/dev/temp/TX/tl_2020_48_tabblock20.zip
+./map_blocks.py ~/dev/temp/IL/Political_Township/Political_Township.geojson ~/dev/temp/IL/tl_2020_17_tabblock20.zip -s OBJECTID
 
 ./map_blocks.py ~/dev/temp/AZ/district-shapes.geojson ~/dev/temp/AZ/tl_2020_04_tabblock20.zip -v
 ./map_blocks.py ~/dev/temp/AZ/district-shapes.geojson ~/dev/temp/AZ/tl_2020_04_tabblock20.zip -b GEOID10 -s foo -v
@@ -108,6 +109,7 @@ def main():
         print("Shapes key: ", shapes_key)
         print("Blocks: ", blocks_path)
         print("Blocks key: ", blocks_key)
+        print("State: ", state)
         print("Block-assignment file: ", baf_path)
 
     # Map the blocks to the shapes
