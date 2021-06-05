@@ -91,7 +91,7 @@ def main():
     if args.blocks_key:
         shapes_key = args.shapes_key
 
-    baf_path = shapes_fn + '.csv'
+    baf_path = shapes_fn + '-BAF.csv'
 
     state = 'XX'
     if '_12_' in blocks_path:
